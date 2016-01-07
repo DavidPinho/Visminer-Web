@@ -12,6 +12,7 @@ import javax.faces.bean.SessionScoped;
 import org.primefaces.model.DefaultTreeNode;
 import org.primefaces.model.TreeNode;
 
+import br.edu.ufba.softvis.visminer.constant.TreeType;
 import br.edu.ufba.softvis.visminer.model.business.Commit;
 import br.edu.ufba.softvis.visminer.model.business.Repository;
 import br.edu.ufba.softvis.visminer.model.business.Tree;
@@ -30,10 +31,12 @@ public class Selector {
 	private Repository repository;
 	private List<Repository> repositories = new ArrayList<Repository>();
 	private Map<Integer, Commit> commitsMap = new TreeMap<Integer, Commit>();
+	private List<Tree> tags;
 
 	private int commitId = -1;
 
 	private TreeNode treeNodes;
+	private TreeNode tagsNodes;
 	private Tree selectedTree;
 
 	@PostConstruct
@@ -52,14 +55,20 @@ public class Selector {
 	private void buildTree() {
 		if (repository != null) {
 			List<Tree> trees = repository.getTrees();
-
+			tagsNodes = new DefaultTreeNode(repository.getName(), null);
 			treeNodes = new DefaultTreeNode(repository.getName(), null);
 			if (trees != null) {
 				for (Tree t : trees) {
-					new DefaultTreeNode(t, treeNodes);
+					if(t.getType()==TreeType.TAG){
+						tags.add(t);
+						new DefaultTreeNode(t, tagsNodes);
+					}else {
+						new DefaultTreeNode(t, treeNodes);
+					}					
 				}
 			}
 		} else {
+			tagsNodes = new DefaultTreeNode("No items to show", null);
 			treeNodes = new DefaultTreeNode("No items to show", null);
 		}
 	}
@@ -74,12 +83,16 @@ public class Selector {
 
 	public void setRepository(Repository repository) {
 		this.repository = repository;
-
+		tags = new ArrayList<>();
 		buildTree();
 	}
 
 	public TreeNode getTreeNodes() {
 		return treeNodes;
+	}
+	
+	public TreeNode getTagsNodes() {
+		return tagsNodes;
 	}
 
 	public void setSelectedTree(Tree tree) {
@@ -144,6 +157,14 @@ public class Selector {
 	
 	public String getPerspectiveName() {
 		return Perspective.toString(getPerspective());
+	}
+	
+	public List<Tree> getTags() {
+		return tags;
+	}
+
+	public void setTags(List<Tree> tags) {
+		this.tags = tags;
 	}
 
 }

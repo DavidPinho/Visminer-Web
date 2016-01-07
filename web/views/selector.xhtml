@@ -28,11 +28,18 @@
 			</p:overlayPanel>
 			<span class="ui-separator"> <span
 				class="ui-icon ui-icon-grip-dotted-vertical" />
-			</span>
-			<p:commandButton id="treeBtn" value="Tree" type="button" />
-			<p:overlayPanel id="treePanel" for="treeBtn" hideEffect="fade"
-				dynamic="true" style="width:700px">
-				<p:tree value="#{selector.treeNodes}" var="node" dynamic="true"
+			</span>					
+			<c:if test="#{selector.perspective=='DEFAULT'}">
+		        <c:set var="nodes" value="#{selector.treeNodes}"/>
+		        <p:commandButton id="treeBtn" value="Tree" type="button" />
+		    </c:if>		
+		    <c:if test="#{selector.perspective=='TECHNICAL_DEBT'}">
+		        <c:set var="nodes" value="#{selector.tagsNodes}"/>
+		        <p:commandButton id="treeBtn" value="Tags" type="button" />
+		    </c:if>	
+			 <p:overlayPanel id="treePanel" for="treeBtn" hideEffect="fade"
+				dynamic="true" style="width:700px">	
+				<p:tree value="#{nodes}"  var="node" dynamic="true"
 					cache="true" animate="true" orientation="horizontal">
 					<p:treeNode>
 						<p:commandLink id="unitcl" ajax="false">

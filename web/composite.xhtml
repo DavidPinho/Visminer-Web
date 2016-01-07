@@ -13,10 +13,7 @@
 			<ui:include src="views/affectedfiles.xhtml" />
 		</c:when>
 		<c:when test="${selector.perspective=='TECHNICAL_DEBT'}">
-			<br />
-			<br />
-			TD
-			<br />
+			<ui:include src="views/technicaldebt/board.xhtml" />
 		</c:when>
 	</c:choose>
 </h:body>
