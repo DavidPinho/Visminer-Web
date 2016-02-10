@@ -3,6 +3,7 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:c="http://java.sun.com/jsp/jstl/core">
 	
 <h:head>
@@ -10,39 +11,19 @@
 <script type="text/javascript" src="js/visminer.js"></script>
 <link href="visjs/vis.css" rel="stylesheet" type="text/css" />
 <link href="resources/visminerweb.css" rel="stylesheet" type="text/css" />
+
 </h:head>
 <h:body>
   <h:outputStylesheet name="visminerweb.css" />
   <div class="board"> 
   	<div class="ui-grid ui-grid-responsive">
 	    <div class="ui-grid-row">
-	        <div style="max-width: 25%">
-		        <p:panel id="filter" style="width:260px;"
-					header="Filter" resizable="true" toggleable="true"
-					toggleOrientation="horizontal" toggleSpeed="500" rendered="#{selector.repository != null}">
-					<p:accordionPanel multiple="true" >
-			           <p:tab title="Version Filter">  
-			           		<div style="text-align: center;">     	  
-					            <p:slider for="minValue, maxValue" display="displayRange" style="width: 160px; margin-top:10px" 
-					            		range="true" minValue="#{sliderRange.minValue}" maxValue="#{sliderRange.maxValue}" 
-					            		displayTemplate="From {min} to {max}"/>
-								<h:outputText id="displayRange" value="From #{sliderRange.minValue} to #{sliderRange.maxValue}" />
-							    <h:inputHidden id="minValue" value="#{sliderRange.minValue}" />
-							    <h:inputHidden id="maxValue" value="#{sliderRange.maxValue}" />
-						    </div>
-			           </p:tab>
-			
-			           <p:tab title="Menu 3">
-			               <h:outputText value="Menu 3 Content" />
-			           </p:tab>
-			        </p:accordionPanel>
-				 </p:panel>	        	
-	        </div>
+	        <ui:include src="sidefilter.xhtml" />
 	        <div style="width: 100%">
 	        	<p:panel id="filter2" 
 					header="Filter" resizable="true"
-					toggleable="true" toggleSpeed="500" rendered="#{selector.repository != null}">
-					
+					toggleable="true" toggleSpeed="500" rendered="#{selector.repository != null}">	
+																			
 				</p:panel>	    
 	        </div>
 	    </div>

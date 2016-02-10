@@ -1,6 +1,6 @@
 .board{
 	height:800px;
-	padding-top: 30px;
+	padding-top: 20px;
 }
 
 .grid-layout{
@@ -28,4 +28,8 @@ padding-bottom: 0;
 
 .ui-panel .ui-panel-content{
  	padding: 0;
+}
+
+.ui-accordion .ui-accordion-content{
+	padding: 1em 1.2em;
 }
