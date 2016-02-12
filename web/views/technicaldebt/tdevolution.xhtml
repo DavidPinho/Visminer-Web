@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html class="no-js" lang="pt-br" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:hf="http://highfaces.org"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+	
+<h:head>
+	<script src="visjs/vis.js"></script>
+	<script type="text/javascript" src="js/visminer.js"></script>
+	<link href="visjs/vis.css" rel="stylesheet" type="text/css" />
+	<link href="resources/visminerweb.css" rel="stylesheet" type="text/css" />
+	
+	
+<script type="text/javascript">
+//<![CDATA[
+           
+ function myconfig() {
+	 this.yAxis = {
+			 min: 0,
+			 allowDecimals: false,
+             title: {
+                text: 'Total of classes having Technical Debt'
+             },         
+			 stackLabels: {
+	                enabled: true,
+	                style: {
+	                    fontWeight: 'bold',
+	                    color: (Highcharts.theme && Highcharts.theme.textColor) || 'black'
+	                }
+			 }
+     };
+	 
+	 this.plotOptions = {
+			 column: {
+	                stacking: 'normal',
+	                dataLabels: {
+	                    enabled: true,
+	                    color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white',
+	                    style: {
+	                    	fontWeight: 'bold',
+	                        textShadow: '0 0 3px black'
+	                    }
+	                }
+	            }			 
+	 };
+	 
+	 this.legend = {
+			align: 'right',
+            x: -30,
+            verticalAlign: 'top',
+            y: 25,
+            floating: true,
+            backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || 'white',
+            borderColor: '#CCC',
+            borderWidth: 1,
+            shadow: false
+	 };
+	 
+	 this.colors = [
+			 '#7cb5ec', '#90ed7d','#434348', '#f7a35c', '#8085e9', 
+			   '#f15c80', '#e4d354', '#2b908f', '#f45b5b', '#91e8e1'
+	 ];
+
+ }
+//]]>
+</script>
+	
+	
+</h:head>
+
+<h:body>
+  <h:outputStylesheet name="visminerweb.css" />
+  <div style="width: 100%">
+   	  <p:panel id="lineChartTDEvolutionPanel" header="TDEvolution" resizable="true"	toggleable="true" toggleSpeed="500" rendered="#{selector.repository != null}">	
+		<hf:chart id="lineChartTDEvolutionContainer" type="column" value="#{lineChartTDEvolution.mappedList}" var="td" extender="myconfig" stacking="normal"
+				  point="#{td.amountTD}" tickLabel="#{td.version}" title="Technical Debt X Versions" height="360" />																									
+      </p:panel>	    
+   </div>         
+</h:body>
+</html>
