@@ -21,6 +21,7 @@ import br.edu.ufba.softvis.visminer.retriever.RepositoryRetriever;
 import br.edu.ufba.softvis.visminerweb.factory.RetrieverFactory;
 import br.edu.ufba.softvis.visminerweb.loader.VisminerInitializer;
 import br.edu.ufba.softvis.visminerweb.util.NavigationUtils;
+import br.edu.ufba.softvis.visminerweb.util.TDUtils;
 
 @ManagedBean(name = "selector")
 @SessionScoped
@@ -55,6 +56,8 @@ public class Selector {
 	private void buildTree() {
 		if (repository != null) {
 			List<Tree> trees = repository.getTrees();
+			//TODO Make Tree class implements Comparable Interface
+		    TDUtils.sortTags(trees);
 			tagsNodes = new DefaultTreeNode(repository.getName(), null);
 			treeNodes = new DefaultTreeNode(repository.getName(), null);
 			if (trees != null) {
@@ -65,7 +68,7 @@ public class Selector {
 					}else {
 						new DefaultTreeNode(t, treeNodes);
 					}					
-				}
+				}				
 			}
 		} else {
 			tagsNodes = new DefaultTreeNode("No items to show", null);

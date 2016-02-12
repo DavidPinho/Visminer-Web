@@ -1,23 +1,37 @@
-package br.edu.ufba.softvis.visminerweb.view;
+package br.edu.ufba.softvis.visminerweb.view.technicaldebt;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.SessionScoped;
+
+import org.primefaces.event.SlideEndEvent;
+
+import br.edu.ufba.softvis.visminerweb.view.Selector;
 
 @ManagedBean(name = "filterTD")
-@ViewScoped
+@SessionScoped
 public class FilterTD {
 
 	private int minValueSlider;  
+	private int initialVersionSlider;  
     private int maxValueSlider;
+    private int finalVersionSlider;
     private String version;
     private String technicalDebt;
     
     @PostConstruct
     public void Init(){
-    	this.minValueSlider=1;
-    	this.maxValueSlider= selector.getTags().size();
+    	int tagsTotal = selector.getTags().size();
+    	if(tagsTotal!=0) {
+    		this.minValueSlider=1;      		
+       		this.initialVersionSlider=1;       		       		
+    	} else { 
+    		this.minValueSlider=0; 
+       		this.minValueSlider=0; 
+        }
+    	this.maxValueSlider = tagsTotal;
+    	this.finalVersionSlider = tagsTotal;  	
     }
     
     @ManagedProperty(value = "#{selector}")
@@ -64,5 +78,20 @@ public class FilterTD {
 	public void setTechnicalDebt(String technicalDebt) {
 		this.technicalDebt = technicalDebt;
 	}
-     
+
+	public int getInitialVersionSlider() {
+		return initialVersionSlider;
+	}
+
+	public void setInitialVersionSlider(int initialVersionSlider) {
+		this.initialVersionSlider = initialVersionSlider;
+	}
+
+	public int getFinalVersionSlider() {
+		return finalVersionSlider;
+	}
+
+	public void setFinalVersionSlider(int finalVersionSlider) {
+		this.finalVersionSlider = finalVersionSlider;
+	}    
 }

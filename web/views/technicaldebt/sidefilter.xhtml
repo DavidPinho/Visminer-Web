@@ -20,14 +20,16 @@
 		header="Filter" resizable="true" toggleable="true"
 		toggleOrientation="horizontal" toggleSpeed="500" rendered="#{selector.repository != null}">
 		<p:accordionPanel multiple="true" activeIndex="0,1" >
-           <p:tab title="Version Filter">  
+           <p:tab title="Evolution Filter">  
            		<div style="text-align: center;">     	  
 		            <p:slider for="minValue, maxValue" display="displayRange" style="width: 160px; margin-top:10px" 
 		            		range="true" minValue="#{filterTD.minValueSlider}" maxValue="#{filterTD.maxValueSlider}" 
-		            		displayTemplate="From {min} to {max}"/>
-					<h:outputText id="displayRange" value="From #{filterTD.minValueSlider} to #{filterTD.maxValueSlider}" />
-				    <h:inputHidden id="minValue" value="#{filterTD.minValueSlider}" />
-				    <h:inputHidden id="maxValue" value="#{filterTD.maxValueSlider}" />
+		            		displayTemplate="From {min} to {max}">
+		            		<p:ajax event="slideEnd" process="minValue maxValue @this" listener="#{lineChartTDEvolution.reload}" update="form:lineChartTDEvolutionContainer" />
+		            </p:slider>
+					<h:outputText id="displayRange" value="From #{filterTD.initialVersionSlider} to #{filterTD.finalVersionSlider}" />
+				    <h:inputHidden id="minValue" value="#{filterTD.initialVersionSlider}" />
+				    <h:inputHidden id="maxValue" value="#{filterTD.finalVersionSlider}" />
 			    </div>
            </p:tab>
 

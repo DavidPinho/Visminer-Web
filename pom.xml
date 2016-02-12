@@ -100,5 +100,10 @@
 			<artifactId>gson</artifactId>
 			<version>2.3.1</version>
 		</dependency>
+		<dependency>
+		    <groupId>org.highfaces</groupId>
+		    <artifactId>highfaces</artifactId>
+		    <version>1.1</version>
+		</dependency>
 	</dependencies>
 </project>
