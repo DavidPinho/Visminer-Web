@@ -22,12 +22,14 @@ import br.edu.ufba.softvis.visminerweb.factory.RetrieverFactory;
 import br.edu.ufba.softvis.visminerweb.loader.VisminerInitializer;
 import br.edu.ufba.softvis.visminerweb.util.NavigationUtils;
 import br.edu.ufba.softvis.visminerweb.util.TDUtils;
+import br.edu.ufba.softvis.visminerweb.view.technicaldebt.TDView;
 
 @ManagedBean(name = "selector")
 @SessionScoped
 public class Selector {
 
 	private Perspective perspective = Perspective.DEFAULT; 
+	private TDView tdView = TDView.EVOLUTION;
 	
 	private Repository repository;
 	private List<Repository> repositories = new ArrayList<Repository>();
@@ -168,6 +170,16 @@ public class Selector {
 
 	public void setTags(List<Tree> tags) {
 		this.tags = tags;
+	}
+
+	public TDView getTdView() {
+		return tdView;
+	}
+
+	public void showTdView(TDView tdView) {
+		this.tdView = tdView;
+		
+		NavigationUtils.reload();
 	}
 
 }

@@ -72,11 +72,12 @@
 
 <h:body>
   <h:outputStylesheet name="visminerweb.css" />
-  <div style="width: 100%">
-   	  <p:panel id="lineChartTDEvolutionPanel" header="TDEvolution" resizable="true"	toggleable="true" toggleSpeed="500" rendered="#{selector.repository != null}">	
+  
+   	  <p:panel id="lineChartTDEvolutionPanel" header="TDEvolution" resizable="true"	toggleable="true" toggleSpeed="500" 
+   	  		   style="width:100%" rendered="#{selector.repository != null and selector.tdView == 'EVOLUTION'}">	
 		<hf:chart id="lineChartTDEvolutionContainer" type="column" value="#{lineChartTDEvolution.mappedList}" var="td" extender="myconfig" stacking="normal"
 				  point="#{td.amountTD}" tickLabel="#{td.version}" title="Technical Debt X Versions" height="360" />																									
       </p:panel>	    
-   </div>         
+       
 </h:body>
 </html>

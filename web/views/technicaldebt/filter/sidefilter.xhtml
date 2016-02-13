@@ -10,6 +10,7 @@
 	<script type="text/javascript" src="js/visminer.js"></script>
 	<link href="visjs/vis.css" rel="stylesheet" type="text/css" />
 	<link href="resources/visminerweb.css" rel="stylesheet" type="text/css" />
+
 </h:head>
 
 <h:body>
@@ -20,7 +21,7 @@
 		header="Filter" resizable="true" toggleable="true"
 		toggleOrientation="horizontal" toggleSpeed="500" rendered="#{selector.repository != null}">
 		<p:accordionPanel multiple="true" activeIndex="0,1" >
-           <p:tab title="Evolution Filter">  
+           <p:tab title="Evolution Filter" rendered="#{selector.tdView == 'EVOLUTION'}">  
            		<div style="text-align: center;">     	  
 		            <p:slider for="minValue, maxValue" display="displayRange" style="width: 160px; margin-top:10px" 
 		            		range="true" minValue="#{filterTD.minValueSlider}" maxValue="#{filterTD.maxValueSlider}" 
@@ -30,7 +31,7 @@
 					<h:outputText id="displayRange" value="From #{filterTD.initialVersionSlider} to #{filterTD.finalVersionSlider}" />
 				    <h:inputHidden id="minValue" value="#{filterTD.initialVersionSlider}" />
 				    <h:inputHidden id="maxValue" value="#{filterTD.finalVersionSlider}" />
-			    </div>
+			    </div>			   
            </p:tab>
 
            <p:tab title="TD Analyzer">	
@@ -43,11 +44,17 @@
 		            <f:selectItem itemLabel="Design Debt" itemValue="code" />
 		            <f:selectItem itemLabel="Code Debt" itemValue="debt" />
 		        </p:selectOneMenu>
-		        <p:commandButton value="Analyze" id="btnAnalyze" actionListener="#{buttonView.buttonAction}"  style="width:100%; margin-top:10px" />
+		        <p:commandButton value="Analyze" id="btnAnalyze" onclick="PF('analyzeDialog').show();PF('analyzeProgressBar').start();"  style="width:100%; margin-top:10px"/> 
+		        <p:dialog id="analyzeDialog" header="Analyzing..." modal="true" widgetVar="analyzeDialog" height="30">
+		   			<p:progressBar id="progressBarClient" ajax="true" value="#{filterTD.progressBarValue}" labelTemplate="{value}%"
+		   				global="false" widgetVar="analyzeProgressBar" style="width:400px">
+		   				<p:ajax event="complete" listener="#{filterTD.cancelProgressBar}" oncomplete="PF('analyzeDialog').hide(); PF('analyzeProgressBar').cancel();"/>
+		   			</p:progressBar>
+	  			</p:dialog>
            </p:tab>
         </p:accordionPanel>
 	 </p:panel>	        	
       </div>
-	        
+    	        
 </h:body>
 </html>

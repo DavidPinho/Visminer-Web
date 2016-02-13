@@ -17,6 +17,7 @@ public class FilterTD {
 	private int initialVersionSlider;  
     private int maxValueSlider;
     private int finalVersionSlider;
+    private Integer progressBarValue;
     private String version;
     private String technicalDebt;
     
@@ -93,5 +94,27 @@ public class FilterTD {
 
 	public void setFinalVersionSlider(int finalVersionSlider) {
 		this.finalVersionSlider = finalVersionSlider;
+	}
+
+	public Integer getProgressBarValue() {		 
+        if(progressBarValue == null) {
+            progressBarValue = 0;
+        }
+        else {
+            progressBarValue = progressBarValue + 10 + (int)(Math.random() * 35);
+             
+            if(progressBarValue > 100)
+                progressBarValue = 100;
+        }
+         
+        return progressBarValue;		    
+	}
+
+	public void setProgressBarValue(Integer progressBarValue) {
+		this.progressBarValue = progressBarValue;
 	}    
+	
+	public void cancelProgressBar() {
+        progressBarValue = null;
+    }
 }

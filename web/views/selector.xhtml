@@ -26,16 +26,24 @@
 					</p:column>
 				</p:dataTable>
 			</p:overlayPanel>
-			<span class="ui-separator"> <span
-				class="ui-icon ui-icon-grip-dotted-vertical" />
-			</span>					
+										
 			<c:if test="#{selector.perspective=='DEFAULT'}">
+				<span class="ui-separator"> <span
+					class="ui-icon ui-icon-grip-dotted-vertical" />
+				</span>	
 		        <c:set var="nodes" value="#{selector.treeNodes}"/>
 		        <p:commandButton id="treeBtn" value="Tree" type="button" />
 		    </c:if>		
 		    <c:if test="#{selector.perspective=='TECHNICAL_DEBT'}">
+		    	<span class="ui-separator"/>
 		        <c:set var="nodes" value="#{selector.tagsNodes}"/>
 		        <p:commandButton id="treeBtn" value="Tags" type="button" />
+		        <span class="ui-separator"> <span
+					class="ui-icon ui-icon-grip-dotted-vertical" />
+				</span>	
+		        <p:commandButton id="tdEvolutionBtn" actionListener="#{selector.showTdView('EVOLUTION')}" value="TD Evolution" />
+		        <span class="ui-separator"/>
+		        <p:commandButton id="tdManagementBtn" actionListener="#{selector.showTdView('EVALUATION')}" value="TD Management" />
 		    </c:if>	
 			 <p:overlayPanel id="treePanel" for="treeBtn" hideEffect="fade"
 				dynamic="true" style="width:700px">	
