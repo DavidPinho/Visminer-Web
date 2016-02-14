@@ -5,8 +5,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 
-import org.primefaces.event.SlideEndEvent;
-
+import br.edu.ufba.softvis.visminerweb.enums.TDView;
 import br.edu.ufba.softvis.visminerweb.view.Selector;
 
 @ManagedBean(name = "filterTD")
@@ -18,7 +17,7 @@ public class FilterTD {
     private int maxValueSlider;
     private int finalVersionSlider;
     private Integer progressBarValue;
-    private String version;
+    private int idVersionSelected;
     private String technicalDebt;
     
     @PostConstruct
@@ -63,14 +62,6 @@ public class FilterTD {
 		setMaxValueSlider(selector.getTags().size());
 		return selector.getTags().size();
 	}
-	
-	public String getVersion() {
-		return version;
-	}
-
-	public void setVersion(String version) {
-		this.version = version;
-	}
 
 	public String getTechnicalDebt() {
 		return technicalDebt;
@@ -101,10 +92,12 @@ public class FilterTD {
             progressBarValue = 0;
         }
         else {
-            progressBarValue = progressBarValue + 10 + (int)(Math.random() * 35);
+            progressBarValue = progressBarValue  + (int)(Math.random() * 35);
              
-            if(progressBarValue > 100)
+            if(progressBarValue > 100){
                 progressBarValue = 100;
+                
+            }
         }
          
         return progressBarValue;		    
@@ -116,5 +109,14 @@ public class FilterTD {
 	
 	public void cancelProgressBar() {
         progressBarValue = null;
+        selector.showTdView(TDView.EVALUATION);
     }
+
+	public int getIdVersionSelected() {
+		return idVersionSelected;
+	}
+
+	public void setIdVersionSelected(int idVersionSelected) {
+		this.idVersionSelected = idVersionSelected;
+	}
 }

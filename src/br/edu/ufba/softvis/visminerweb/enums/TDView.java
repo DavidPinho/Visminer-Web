@@ -1,4 +1,4 @@
-package br.edu.ufba.softvis.visminerweb.view.technicaldebt;
+package br.edu.ufba.softvis.visminerweb.enums;
 
 public enum TDView {
 	

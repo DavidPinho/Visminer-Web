@@ -4,6 +4,7 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
 <h:body>
 	<p:growl id="messages" showDetail="true" />
 	<p:toolbar>
@@ -43,7 +44,7 @@
 				</span>	
 		        <p:commandButton id="tdEvolutionBtn" actionListener="#{selector.showTdView('EVOLUTION')}" value="TD Evolution" />
 		        <span class="ui-separator"/>
-		        <p:commandButton id="tdManagementBtn" actionListener="#{selector.showTdView('EVALUATION')}" value="TD Management" />
+		        <p:commandButton id="tdManagementBtn" actionListener="#{selector.showTdView('MANAGEMENT')}" value="TD Management" />
 		    </c:if>	
 			 <p:overlayPanel id="treePanel" for="treeBtn" hideEffect="fade"
 				dynamic="true" style="width:700px">	

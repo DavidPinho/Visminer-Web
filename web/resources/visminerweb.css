@@ -33,3 +33,44 @@ padding-bottom: 0;
 .ui-accordion .ui-accordion-content{
 	padding: 1em 1.2em;
 }
+
+.ui-paginator .ui-paginator-next .ui-icon, .ui-paginator .ui-paginator-prev .ui-icon, .ui-paginator .ui-paginator-first .ui-icon, .ui-paginator .ui-paginator-last .ui-icon {
+    height: 21px;
+    overflow: inherit;
+}
+
+.evaluationtd-badge-code{
+	background: #EDEB21 !important;
+	border: 1px solid #EDEB21 !important;
+	font-size: 16px !important ;
+	color: #555159 !important;
+	text-decoration: none;
+}
+
+.evaluationtd-badge-design{
+	background: #73d216!important;
+	border: 1px solid  #73d216 !important;
+	font-size: 16px !important ;
+	color: #555159 !important;
+	text-decoration: none;
+}
+
+.evaluationtd-badge-button{
+	width: 30px;
+	height: 20px;
+	top: 5px;
+	font-size: 16px !important ;
+	text-decoration: none;
+}
+
+.evaluationtd-badge-yes{
+	background: #008000 !important;
+	border: 1px solid #008000 !important;
+	color: #fff !important;
+}
+
+.evaluationtd-badge-no{
+	background: #F00 !important;
+	border: 1px solid #F00 !important;
+	color: #fff !important;
+}

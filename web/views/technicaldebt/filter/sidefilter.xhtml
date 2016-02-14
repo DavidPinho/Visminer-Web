@@ -35,20 +35,21 @@
            </p:tab>
 
            <p:tab title="TD Analyzer">	
-                <p:selectOneMenu id="versionList" value="#{filterTD.version}" style="width:100%">
+                <p:selectOneMenu id="versionList" value="#{filterTD.idVersionSelected}" style="width:100%">
 		            <f:selectItem itemLabel="Select Version" itemValue="all" />
-		            <f:selectItems value="#{filterTD.selector.tags}" />
+		            <f:selectItems value="#{filterTD.selector.tags}" var="tag" itemValue="#{tag.id}" itemLabel="#{tag.name}"/>
 		        </p:selectOneMenu>		              
 	            <p:selectOneMenu id="tdList" value="#{filterTD.technicalDebt}" style="width:100%; margin-top:10px">
 		            <f:selectItem itemLabel="Select TD" itemValue="all" />
-		            <f:selectItem itemLabel="Design Debt" itemValue="code" />
-		            <f:selectItem itemLabel="Code Debt" itemValue="debt" />
+		            <f:selectItem itemLabel="Design Debt" itemValue="DESIGN" />
+		            <f:selectItem itemLabel="Code Debt" itemValue="CODE" />
 		        </p:selectOneMenu>
-		        <p:commandButton value="Analyze" id="btnAnalyze" onclick="PF('analyzeDialog').show();PF('analyzeProgressBar').start();"  style="width:100%; margin-top:10px"/> 
+		        <p:commandButton value="Analyze" id="btnAnalyze" onclick="PF('analyzeDialog').show();PF('analyzeProgressBar').start();"
+		        				  style="width:100%; margin-top:10px" /> 
 		        <p:dialog id="analyzeDialog" header="Analyzing..." modal="true" widgetVar="analyzeDialog" height="30">
 		   			<p:progressBar id="progressBarClient" ajax="true" value="#{filterTD.progressBarValue}" labelTemplate="{value}%"
-		   				global="false" widgetVar="analyzeProgressBar" style="width:400px">
-		   				<p:ajax event="complete" listener="#{filterTD.cancelProgressBar}" oncomplete="PF('analyzeDialog').hide(); PF('analyzeProgressBar').cancel();"/>
+		   				global="false" widgetVar="analyzeProgressBar" style="width:400px; color:#E1E463" interval="1000" oncomplete="PF('analyzeDialog').hide(); PF('analyzeProgressBar').cancel();" >
+		   				<p:ajax event="complete" listener="#{filterTD.cancelProgressBar}"/>
 		   			</p:progressBar>
 	  			</p:dialog>
            </p:tab>

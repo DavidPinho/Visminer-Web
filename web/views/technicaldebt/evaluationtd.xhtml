@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html class="no-js" lang="pt-br" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+<head>
+
+</head>
+<h:body>
+	<h:outputStylesheet name="visminerweb.css" />
+	 
+	<h:form id="form">
+	    <p:dataGrid var="softwareUnit" value="#{evaluationTD.evaluatedUnits}" columns="2" layout="grid" style="width:100%; padding-top:5px;" 
+	    	rows="6" paginator="true" id="evaluatedUnits" rendered="#{selector.repository != null and selector.tdView == 'EVALUATION'}"
+	        paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+	        paginatorPosition="bottom" rowsPerPageTemplate="6, 8, 12">
+	 
+	        <f:facet name="header">
+	            Evaluate which classes have Technical Debt	
+	        </f:facet>
+	 
+	        <p:panel widgetVar="unitPanel#{softwareUnit.idSoftwareUnit}" header="#{softwareUnit.name}" style="text-align:center">
+	            <h:panelGrid columns="2" style="width:100%; text-align:left;">	 
+	            	<p:row> 
+	            		<p:column>
+        				   <h:outputText value="Debt:" /> 
+        				   <p:spacer width="5" height="5" />
+     				    </p:column>    
+                        <p:column >
+                        	<ui:repeat value="#{softwareUnit.technicalDebts}" var="debt">                      		
+                        		<ui:fragment rendered="${debt eq 'CODE'}"> 
+                        			<h:outputLabel  styleClass="evaluationtd-badge-code ui-corner-all ui-state-default" ><h:outputText value="code"  /></h:outputLabel>
+                        		</ui:fragment>   
+                        		<ui:fragment rendered="${debt eq 'DESIGN'}"> 
+                        			<p:spacer width="10" height="10" />
+                        			<h:outputLabel styleClass="evaluationtd-badge-design ui-corner-all ui-state-default" ><h:outputText value="design"  /></h:outputLabel>
+                        		</ui:fragment>               								  
+							</ui:repeat>         	 			  				
+    				   </p:column>    				   
+	            	</p:row>
+	            	<p:row> 
+	            		<p:column>
+        				   <h:outputText value="God Class:" /> 
+        				   <p:spacer width="5" height="5" />
+     				    </p:column>    
+                        <p:column >                      
+                        		<p:commandButton rendered="${softwareUnit.metrics.wmc gt 4 and softwareUnit.metrics.atfd gt 1 and softwareUnit.metrics.tcc lt 0.7}" 
+                        						styleClass="evaluationtd-badge-button evaluationtd-badge-yes ui-corner-all ui-state-default" 
+                        						icon="fa fa-fw fa-thumbs-o-up"/>
+                        		<p:commandButton rendered="${softwareUnit.metrics.wmc lt 5 or softwareUnit.metrics.atfd lt 2 or softwareUnit.metrics.tcc gt 0.67}" 
+                        						styleClass="evaluationtd-badge-button evaluationtd-badge-no ui-corner-all ui-state-default" 
+                        						icon="fa fa-fw fa-thumbs-o-down"/>                        	  	 					        	 				
+    				   </p:column>    				   
+	            	</p:row>
+	            	<p:row> 
+	            		<p:column>
+        				   <h:outputText value="Duplicated Code:" /> 
+        				   <p:spacer width="5" height="5" />
+     				    </p:column>    
+                        <p:column >
+                               <p:commandButton rendered="${softwareUnit.metrics.wmc gt 3}" 
+                        						styleClass="evaluationtd-badge-button evaluationtd-badge-yes ui-corner-all ui-state-default" 
+                        						icon="fa fa-fw fa-thumbs-o-up"/>
+                        		<p:commandButton rendered="${softwareUnit.metrics.wmc lt 4}" 
+                        						styleClass="evaluationtd-badge-button evaluationtd-badge-no ui-corner-all ui-state-default" 
+                        						icon="fa fa-fw fa-thumbs-o-down"/>            
+    				   </p:column>    				 
+	            	</p:row>	                     
+	                      
+	            </h:panelGrid>
+	            <f:facet name="actions">
+		            <h:commandLink style="border-color:red" styleClass="ui-panel-titlebar-icon ui-corner-all ui-state-default" onclick="PF('unitPanel#{softwareUnit.idSoftwareUnit}').close()" ><h:outputText style="background-color:red; border-color:red" styleClass="ui-icon ui-icon-trash" /></h:commandLink>
+		            <h:commandLink style="border-color:green" styleClass="ui-panel-titlebar-icon ui-corner-all ui-state-default"><h:outputText style="background-color:green;" styleClass="ui-icon ui-icon-plus" /></h:commandLink>
+		        </f:facet>
+	        </p:panel>
+	 
+	    </p:dataGrid>
+	</h:form>
+  		
+</h:body>
+</html>

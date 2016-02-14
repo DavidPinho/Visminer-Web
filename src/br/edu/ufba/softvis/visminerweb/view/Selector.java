@@ -18,11 +18,11 @@ import br.edu.ufba.softvis.visminer.model.business.Repository;
 import br.edu.ufba.softvis.visminer.model.business.Tree;
 import br.edu.ufba.softvis.visminer.retriever.CommitRetriever;
 import br.edu.ufba.softvis.visminer.retriever.RepositoryRetriever;
+import br.edu.ufba.softvis.visminerweb.enums.TDView;
 import br.edu.ufba.softvis.visminerweb.factory.RetrieverFactory;
 import br.edu.ufba.softvis.visminerweb.loader.VisminerInitializer;
 import br.edu.ufba.softvis.visminerweb.util.NavigationUtils;
 import br.edu.ufba.softvis.visminerweb.util.TDUtils;
-import br.edu.ufba.softvis.visminerweb.view.technicaldebt.TDView;
 
 @ManagedBean(name = "selector")
 @SessionScoped
