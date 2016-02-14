@@ -104,6 +104,6 @@
 		    <groupId>org.highfaces</groupId>
 		    <artifactId>highfaces</artifactId>
 		    <version>1.1</version>
-		</dependency>
+		</dependency> 
 	</dependencies>
 </project>
