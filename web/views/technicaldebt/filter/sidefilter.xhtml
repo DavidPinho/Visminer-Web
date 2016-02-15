@@ -36,7 +36,7 @@
 
            <p:tab title="TD Analyzer">	
                 <p:selectOneMenu id="versionList" value="#{filterTD.idVersionSelected}" style="width:100%">
-		            <f:selectItem itemLabel="Select Version" itemValue="all" />
+		            <f:selectItem itemLabel="Select Version" itemValue="0" />
 		            <f:selectItems value="#{filterTD.selector.tags}" var="tag" itemValue="#{tag.id}" itemLabel="#{tag.name}"/>
 		        </p:selectOneMenu>		              
 	            <p:selectOneMenu id="tdList" value="#{filterTD.technicalDebt}" style="width:100%; margin-top:10px">

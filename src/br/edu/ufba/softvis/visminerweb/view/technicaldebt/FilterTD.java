@@ -20,6 +20,10 @@ public class FilterTD {
     private int idVersionSelected;
     private String technicalDebt;
     
+    public FilterTD() {
+		// TODO Auto-generated constructor stub
+	}
+    
     @PostConstruct
     public void Init(){
     	int tagsTotal = selector.getTags().size();
@@ -31,7 +35,7 @@ public class FilterTD {
        		this.minValueSlider=0; 
         }
     	this.maxValueSlider = tagsTotal;
-    	this.finalVersionSlider = tagsTotal;  	
+    	this.finalVersionSlider = tagsTotal; 
     }
     
     @ManagedProperty(value = "#{selector}")

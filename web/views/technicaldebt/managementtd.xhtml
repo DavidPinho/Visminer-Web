@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html class="no-js" lang="pt-br" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+<head>
+
+</head>
+<h:body>
+	<h:outputStylesheet name="visminerweb.css" />
+	 <p:panel id="managementPanel" header="Technical Debt Management" resizable="true"	toggleable="true" toggleSpeed="500" 
+   	  		   style="width:100%" rendered="#{selector.repository != null and selector.tdView == 'MANAGEMENT'}">	
+	<h:form id="formManagement">
+        <p:dashboard id="dashboard22" binding="#{managementTD.dashboard}">
+           <p:ajax event="reorder" listener="#{managementTD.handleReorder}"  />
+       </p:dashboard>
+
+       <div style="clear:both" />
+   </h:form>
+   </p:panel>
+  		
+</h:body>
+</html>
